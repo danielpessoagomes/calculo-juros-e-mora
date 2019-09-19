@@ -1,0 +1,59 @@
+<div class="container">
+  <h2>Correção valores boleto</h2>
+  <form #f="ngForm">
+    <div class="p-grid">
+      <div class="p-col-6 ui-fluid">
+        <label>Dias Pagamento</label>
+        <p-calendar name="dataPagamento" [(ngModel)]="dataPagamento" dateFormat="dd/mm/yy" showIcon="true"
+          showButtonBar="true"></p-calendar>
+      </div>
+      <div class="p-col-6 ui-fluid">
+        <label>Data Vencimento</label>
+        <p-calendar name="dataVencimento" [(ngModel)]="dataVencimento" dateFormat="dd/mm/yy" showIcon="true"
+          showButtonBar="true"></p-calendar>
+      </div>
+      <div class="p-col-12">
+        <button pButton type="button" (click)="calcularDias()" label="Calcular Dias" [disabled]="btnCalcularDias"></button>
+      </div>
+      <div class="p-col-3 ui-fluid">
+        <label>Dias de atraso</label>
+        <input pInputText type="number" name="diasDeAtraso" [(ngModel)]="diasDeAtraso" disabled>
+      </div>
+      <div class="p-col-3 ui-fluid">
+        <label>Multa</label>
+        <div class="ui-inputgroup">
+          <input pInputText type="number" name="multa" [(ngModel)]="multa">
+          <span class="ui-inputgroup-addon">%</span>
+        </div>
+      </div>
+      <div class="p-col-3 ui-fluid">
+        <label>Juros</label>
+        <div class="ui-inputgroup">
+          <input pInputText type="number" name="juros" [(ngModel)]="juros">
+          <span class="ui-inputgroup-addon">%</span>
+        </div>
+      </div>
+      <div class="p-col-3 ui-fluid">
+        <label>Valor (R$)</label>
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon">R$</span>
+          <input pInputText type="number" name="valor" [(ngModel)]="valor">
+        </div>
+      </div>
+      <div class="p-col-12">
+          <button pButton type="button" (click)="calcular()" label="Calcular" [disabled]="inputDiasAtraso"></button>
+        </div>
+    </div>
+  </form>
+
+  <p-panel header="RESUMO">
+    <label>Valor Multa:</label>
+    <span> R$ {{ valor * (multa / 100) | number: '0.2-2' }}</span>
+    <br />
+    <label>Valor Juros:</label>
+    <span> R$ {{ valor * (((juros / 100) / 30) * diasDeAtraso) | number: '0.2-2' }}</span>
+    <br />
+    <label>Valor Corrigido:</label>
+    <span> R$ {{ valorAtualizado | number: '0.2-2' }}</span>
+  </p-panel>
+</div>
