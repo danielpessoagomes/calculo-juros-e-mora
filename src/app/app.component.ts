@@ -19,8 +19,8 @@ export class AppComponent implements OnInit {
   dataVencimento: Date;
   dataPagamento: Date;
   diasDeAtraso: number;
-  juros: number;
-  multa: number;
+  juros: number = 4;
+  multa: number = 2;
   valor: number;
   valorAtualizado: number;
 

@@ -37,7 +37,7 @@
         <label>Valor (R$)</label>
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon">R$</span>
-          <input pInputText type="number" name="valor" [(ngModel)]="valor">
+          <input pInputText type="number" name="valor" [(ngModel)]="valor" (keyup)="calcular()">
         </div>
       </div>
       <div class="p-col-12">
